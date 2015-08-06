@@ -42,11 +42,13 @@ namespace MakeMeVerySmart
                 if ( result.Usages.Keys.Count > 1 )
                 {
                     var synonyms = FindGoodSynonym( word, result.Usages );
-                    chosenWords.Add( ChooseTheWord( synonyms ) );
+                    var synonym = ChooseTheWord( synonyms );
+                    chosenWords.Add( synonym );
                 }
                 else if ( result.Usages.Keys.Count == 1 )
                 {
-                    var synonym = ChooseTheWord( result.Usages.Values.First() );
+                    var synonyms = result.Usages.Values.First();
+                    var synonym = ChooseTheWord( synonyms );
                     chosenWords.Add( synonym );
                 }
                 else
