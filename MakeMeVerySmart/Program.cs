@@ -6,11 +6,6 @@ namespace MakeMeVerySmart
 {
     internal class Program
     {
-        private static bool _selectLongestWord = false;
-        private static bool _selectRandomWord = true;
-        private static bool _excludeWordsWithSpaces = true;
-        private static bool _warnOnMultipleUsages = true;
-
         private static readonly IReadOnlyList<string> _ignores = new List<string>
         {
             "i",
@@ -19,20 +14,53 @@ namespace MakeMeVerySmart
 
         private static void Main(string[] args)
         {
-            Console.WriteLine( "<< Config >>" );
-            Console.WriteLine( $"Warn when multiple usages exists: {_warnOnMultipleUsages}" );
-            Console.WriteLine( $"Select the longest word: {_selectLongestWord}" );
-            Console.WriteLine( $"Select a random word: {_selectRandomWord}" );
-            Console.WriteLine( $"Exclude words with spaces: {_excludeWordsWithSpaces}" );
             while (true)
             {
-                Console.Write( "Please input sentence:" );
+                Console.WriteLine( "[0] Change config" );
+                Console.WriteLine( "[1] Make Me VerySmart" );
                 var input = Console.ReadLine();
                 if ( input != null )
                 {
-                    var trimmedInput = input.Trim();
-                    var makeMeVerySmart = MakeMeVerySmart( trimmedInput );
-                    Console.WriteLine( makeMeVerySmart );
+                    int selection;
+                    if ( int.TryParse( input, out selection ) )
+                    {
+                        switch (selection)
+                        {
+                            case 0:
+                                Console.WriteLine( "<< Config (any letter = exit) >>" );
+                                var options = Config.Options.Keys.ToList();
+                                for (var i = 0; i < options.Count; i++)
+                                {
+                                    var option = options[i];
+                                    var value = Config.Options[option];
+                                    Console.WriteLine( $"[{i}] {option}. {value}" );
+                                }
+                                Console.Write( "Toggle option: " );
+                                input = Console.ReadLine();
+                                if ( input != null )
+                                {
+                                    if ( int.TryParse( input, out selection ) )
+                                    {
+                                        var option = options[selection];
+                                        Config.Options[option] = !Config.Options[option];
+                                        goto case 0;
+                                    }
+                                }
+                                break;
+                            case 1:
+                                Console.Write("Please input sentence:");
+                                input = Console.ReadLine();
+                                if (input != null)
+                                {
+                                    var trimmedInput = input.Trim();
+                                    var makeMeVerySmart = MakeMeVerySmart(trimmedInput);
+                                    Console.WriteLine(makeMeVerySmart);
+                                }
+                                break;
+                            default:
+                                continue;
+                        }
+                    }
                 }
             }
         }
