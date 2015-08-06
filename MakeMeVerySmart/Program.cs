@@ -41,7 +41,7 @@ namespace MakeMeVerySmart
                 var result = api.GetEntry( word );
                 if ( result.Usages.Keys.Count > 1 )
                 {
-                    var synonyms = FindGoodSynonym( result, word );
+                    var synonyms = FindGoodSynonym( word, result.Usages );
                     chosenWords.Add( ChooseTheWord( synonyms ) );
                 }
                 else if ( result.Usages.Keys.Count == 1 )
@@ -57,13 +57,13 @@ namespace MakeMeVerySmart
             return string.Join( " ", chosenWords );
         }
 
-        private static List<string> FindGoodSynonym(ThesaurusEntry result, string word)
+        private static List<string> FindGoodSynonym(string word, IDictionary<string, List<string>> usages)
         {
-            var synonyms = result.Usages.Values.First();
+            var synonyms = usages.Values.First();
             if ( _warnOnMultipleUsages )
             {
                 Console.WriteLine( $"Multiple usages found for \"{word}\". Please select the most fitting:" );
-                var keys = result.Usages.Keys.ToList();
+                var keys = usages.Keys.ToList();
                 for (var i = 0; i < keys.Count; i++)
                 {
                     Console.WriteLine( $"[{i}] {keys[i]}" );
@@ -72,7 +72,7 @@ namespace MakeMeVerySmart
                 if ( input != null )
                 {
                     var selection = int.Parse( input );
-                    return result.Usages[keys[selection]];
+                    return usages[keys[selection]];
                 }
             }
             return synonyms;
