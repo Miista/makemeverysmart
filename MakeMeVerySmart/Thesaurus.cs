@@ -8,36 +8,12 @@ namespace MakeMeVerySmart
 {
     public interface IThesaurus
     {
-        IReadOnlyList<string> GetSynonymsDeprecated(string word);
-
         ThesaurusEntry GetEntry(string lookupText);
     }
 
 
     internal class Thesaurus : IThesaurus
     {
-        public IReadOnlyList<string> GetSynonymsDeprecated(string word)
-        {
-            var webRequest = WebRequest.Create( $"http://www.thesaurus.com/browse/{word}" );
-            var htmlDocument = new HtmlDocument();
-            var responseStream = webRequest.GetResponse().GetResponseStream();
-            if ( responseStream == null )
-            {
-                return new List<string>();
-            }
-            var streamReader = new StreamReader( responseStream );
-            htmlDocument.Load( streamReader );
-            var enumerable =
-                htmlDocument.DocumentNode.SelectNodes(
-                    "//div[@id='synonyms-0']//div[@class='relevancy-list']//ul//li//a//span[@class='text']" );
-            if ( enumerable == null )
-            {
-                return new List<string>();
-            }
-            var synonyms = enumerable.Select( n => n.InnerText );
-            return synonyms.ToList();
-        }
-
         public ThesaurusEntry GetEntry(string lookupText)
         {
             var entry = new ThesaurusEntry();
