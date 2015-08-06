@@ -75,15 +75,15 @@ namespace MakeMeVerySmart
                     synonyms = result.Usages[keys[selection]];
                 }
             }
+            return ChooseTheWord( synonyms ) ?? word;
+        }
+
+        private static string ChooseTheWord(List<string> synonyms)
+        {
             if ( _excludeWordsWithSpaces )
             {
                 synonyms.RemoveAll( s => s.Contains( " " ) );
             }
-            return ChooseTheWord( synonyms ) ?? word;
-        }
-
-        private static string ChooseTheWord(IReadOnlyList<string> synonyms)
-        {
             if ( synonyms.Count == 0 )
             {
                 return null;
