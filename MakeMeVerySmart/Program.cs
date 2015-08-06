@@ -19,47 +19,47 @@ namespace MakeMeVerySmart
                 Console.WriteLine( "[0] Change config" );
                 Console.WriteLine( "[1] Make Me VerySmart" );
                 var input = Console.ReadLine();
-                if ( input != null )
+                if ( string.IsNullOrEmpty( input ) || string.IsNullOrWhiteSpace( input ))
                 {
-                    int selection;
-                    if ( int.TryParse( input, out selection ) )
+                    Environment.Exit( 0 );
+                }
+                int selection;
+                if ( int.TryParse( input, out selection ) )
+                {
+                    switch (selection)
                     {
-                        switch (selection)
-                        {
-                            case 0:
-                                Console.WriteLine( "<< Config (any letter = exit) >>" );
-                                var options = Config.Options.Keys.ToList();
-                                for (var i = 0; i < options.Count; i++)
-                                {
-                                    var option = options[i];
-                                    var value = Config.Options[option];
-                                    Console.WriteLine( $"[{i}] {option}. {value}" );
-                                }
-                                Console.Write( "Toggle option: " );
-                                input = Console.ReadLine();
-                                if ( input != null )
-                                {
-                                    if ( int.TryParse( input, out selection ) )
-                                    {
-                                        var option = options[selection];
-                                        Config.Options[option] = !Config.Options[option];
-                                        goto case 0;
-                                    }
-                                }
-                                break;
-                            case 1:
-                                Console.Write("Please input sentence:");
-                                input = Console.ReadLine();
-                                if (input != null)
-                                {
-                                    var trimmedInput = input.Trim();
-                                    var makeMeVerySmart = MakeMeVerySmart(trimmedInput);
-                                    Console.WriteLine(makeMeVerySmart);
-                                }
-                                break;
-                            default:
-                                continue;
-                        }
+                        case 0:
+                            Console.WriteLine( "<< Config (any letter = exit) >>" );
+                            var options = Config.Options.Keys.ToList();
+                            for (var i = 0; i < options.Count; i++)
+                            {
+                                var option = options[i];
+                                var value = Config.Options[option];
+                                Console.WriteLine( $"[{i}] {option}. {value}" );
+                            }
+                            Console.Write( "Toggle option: " );
+                            input = Console.ReadLine();
+                            if ( int.TryParse( input, out selection ) )
+                            {
+                                var option = options[selection];
+                                Config.Options[option] = !Config.Options[option];
+                                goto case 0;
+                            }
+                            break;
+                        case 1:
+                            Console.Write( "Please input sentence:" );
+                            input = Console.ReadLine();
+                            if ( string.IsNullOrWhiteSpace( input )
+                                 || string.IsNullOrEmpty( input ) )
+                            {
+                                goto case 1;
+                            }
+                            var trimmedInput = input.Trim();
+                            var makeMeVerySmart = MakeMeVerySmart( trimmedInput );
+                            Console.WriteLine( makeMeVerySmart );
+                            break;
+                        default:
+                            continue;
                     }
                 }
             }
