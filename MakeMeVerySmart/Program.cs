@@ -11,6 +11,12 @@ namespace MakeMeVerySmart
         private static bool _excludeWordsWithSpaces = true;
         private static bool _warnOnMultipleUsages = true;
 
+        private static readonly IReadOnlyList<string> _ignores = new List<string>
+        {
+            "i",
+            "am"
+        };
+
         private static void Main(string[] args)
         {
             Console.WriteLine( "<< Config >>" );
@@ -38,6 +44,11 @@ namespace MakeMeVerySmart
             var chosenWords = new List<string>();
             foreach (var word in words)
             {
+                if ( _ignores.Contains( word ) )
+                {
+                    chosenWords.Add( word );
+                    continue;
+                }
                 var result = api.GetEntry( word );
                 if ( result.Usages.Keys.Count > 1 )
                 {
