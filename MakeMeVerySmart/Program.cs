@@ -72,7 +72,7 @@ namespace MakeMeVerySmart
 
         private static List<string> GetSynonymList(string word, IDictionary<string, List<string>> usages)
         {
-            if ( _warnOnMultipleUsages )
+            if ( Config.Options[Config.OptionWarnOnMultipleUsages] )
             {
                 Console.WriteLine( $"Multiple usages found for \"{word}\". Please select the most fitting:" );
                 var keys = usages.Keys.ToList();
@@ -92,7 +92,7 @@ namespace MakeMeVerySmart
 
         private static string ChooseTheWord(List<string> synonyms)
         {
-            if ( _excludeWordsWithSpaces )
+            if ( Config.Options[Config.OptionExcludeWordsWithSpaces] )
             {
                 synonyms.RemoveAll( s => s.Contains( " " ) );
             }
@@ -100,16 +100,32 @@ namespace MakeMeVerySmart
             {
                 return null;
             }
-            if ( _selectRandomWord )
+            if ( Config.Options[Config.OptionSelectRandom] )
             {
                 return Selections.RandomWord( synonyms );
             }
-            if ( _selectLongestWord )
+            if ( Config.Options[Config.OptionSelectLongestWord] )
             {
                 return Selections.LongestWord( synonyms );
             }
             return synonyms.First();
         }
+    }
+
+    internal class Config
+    {
+        public const string OptionWarnOnMultipleUsages = "Warn when multiple usages exists";
+        public const string OptionSelectLongestWord = "Select the longest word";
+        public const string OptionSelectRandom = "Select a random word";
+        public const string OptionExcludeWordsWithSpaces = "Exclude words with spaces";
+
+        public static IDictionary<string, bool> Options { get; } = new Dictionary<string, bool>()
+        {
+            { OptionWarnOnMultipleUsages, false },
+            { OptionSelectLongestWord, false },
+            { OptionSelectRandom, false },
+            { OptionExcludeWordsWithSpaces, false }
+        };
     }
 
     internal class Selections
