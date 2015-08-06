@@ -59,7 +59,6 @@ namespace MakeMeVerySmart
 
         private static List<string> FindGoodSynonym(string word, IDictionary<string, List<string>> usages)
         {
-            var synonyms = usages.Values.First();
             if ( _warnOnMultipleUsages )
             {
                 Console.WriteLine( $"Multiple usages found for \"{word}\". Please select the most fitting:" );
@@ -75,7 +74,7 @@ namespace MakeMeVerySmart
                     return usages[keys[selection]];
                 }
             }
-            return synonyms;
+            return usages.Values.First();
         }
 
         private static string ChooseTheWord(List<string> synonyms)
