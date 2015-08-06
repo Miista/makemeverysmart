@@ -37,7 +37,7 @@ namespace MakeMeVerySmart
         private static string MakeMeVerySmart(string sentence)
         {
             var words = sentence.Split( ' ' );
-            var api = new ThesaurusApi();
+            var api = new Thesaurus();
             var chosenWords = new List<string>();
             foreach (var word in words)
             {
@@ -116,14 +116,14 @@ namespace MakeMeVerySmart
         }
     }
 
-    public interface IThesaurusApi
+    public interface IThesaurus
     {
         IReadOnlyList<string> GetSynonymsDeprecated(string word);
 
         ThesaurusEntry GetEntry(string lookupText);
     }
 
-    internal class ThesaurusApi : IThesaurusApi
+    internal class Thesaurus : IThesaurus
     {
         public IReadOnlyList<string> GetSynonymsDeprecated(string word)
         {
