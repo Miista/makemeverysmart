@@ -45,6 +45,9 @@ namespace VerySmart_Core
             Options = new VerySmartOptions();
         }
 
+        /// <summary>
+        /// <returns><c>null</c> if the usage cannot be resolved.</returns>
+        /// </summary>
         [NotNull]
         public Func<string, List<IUsage>, IUsage> UsageResolver { get; set; }
 
