@@ -21,6 +21,8 @@ namespace Thesaurus
         Verb,
         Adjective,
         Noun,
-        Unknown
+        Preposition,
+        Unknown,
+        Adverbium
     }
 }

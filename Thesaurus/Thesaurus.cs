@@ -9,9 +9,10 @@ namespace Thesaurus
 {
     public class Thesaurus : IThesaurus
     {
-        public List<IUsage> GetUsages([NotNull] string word)
+        [NotNull]
+        public List<IUsage> GetUsages([NotNull] string term)
         {
-            var request = WebRequest.Create( $"http://www.thesaurus.com/browse/{word}" );
+            var request = WebRequest.Create( $"http://www.thesaurus.com/browse/{term}" );
             using (var response = request.GetResponse()
                                          .GetResponseStream())
             {
@@ -69,6 +70,10 @@ namespace Thesaurus
                     return WordType.Verb;
                 case "noun":
                     return WordType.Noun;
+                case "prep":
+                    return WordType.Preposition;
+                case "adv":
+                    return WordType.Adverbium;
                 default:
                     return WordType.Unknown;
             }

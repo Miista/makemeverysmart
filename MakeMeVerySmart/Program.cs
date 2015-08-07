@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Thesaurus;
 
 namespace MakeMeVerySmart
 {
@@ -68,7 +69,7 @@ namespace MakeMeVerySmart
         private static string MakeMeVerySmart(string sentence)
         {
             var words = sentence.Split( ' ' );
-            var api = new Thesaurus();
+            var api = new global::Thesaurus.Thesaurus();
             var chosenWords = new List<string>();
             foreach (var word in words)
             {
@@ -77,17 +78,17 @@ namespace MakeMeVerySmart
                     chosenWords.Add( word );
                     continue;
                 }
-                var result = api.GetEntry( word );
-                if ( result.Usages.Keys.Count > 1 )
+                var result = api.GetUsages( word );
+                if ( result.Count > 1 )
                 {
-                    var synonyms = GetSynonymList( word, result.Usages );
-                    var synonym = ChooseTheWord( synonyms );
+                    var synonyms = GetSynonymList( word, result );
+                    var synonym = ChooseTheWord( synonyms.ToList() );
                     chosenWords.Add( synonym );
                 }
-                else if ( result.Usages.Keys.Count == 1 )
+                else if ( result.Count == 1 )
                 {
-                    var synonyms = result.Usages.Values.First();
-                    var synonym = ChooseTheWord( synonyms );
+                    var synonyms = result.First().Synonyms;
+                    var synonym = ChooseTheWord( synonyms.ToList() );
                     chosenWords.Add( synonym );
                 }
                 else
@@ -98,24 +99,23 @@ namespace MakeMeVerySmart
             return string.Join( " ", chosenWords );
         }
 
-        private static List<string> GetSynonymList(string word, IDictionary<string, List<string>> usages)
+        private static IReadOnlyList<string> GetSynonymList(string word, List<IUsage> usages)
         {
             if ( Config.Options[Config.OptionWarnOnMultipleUsages] )
             {
                 Console.WriteLine( $"Multiple usages found for \"{word}\". Please select the most fitting:" );
-                var keys = usages.Keys.ToList();
-                for (var i = 0; i < keys.Count; i++)
+                for (var i = 0; i < usages.Count; i++)
                 {
-                    Console.WriteLine( $"[{i}] {keys[i]}" );
+                    Console.WriteLine( $"[{i}] {usages[i].Text}" );
                 }
                 var input = Console.ReadLine();
                 if ( input != null )
                 {
                     var selection = int.Parse( input );
-                    return usages[keys[selection]];
+                    return usages[selection].Synonyms;
                 }
             }
-            return usages.Values.First();
+            return usages.First().Synonyms;
         }
 
         private static string ChooseTheWord(List<string> synonyms)
@@ -156,7 +156,7 @@ namespace MakeMeVerySmart
         };
     }
 
-    internal class Selections
+    public class Selections
     {
         public static string LongestWord(IReadOnlyList<string> list) => list.Aggregate( (s1, s2) => s1.Length < s2.Length
             ? s2

@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thesaurus", "Thesaurus\Thes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thesaurus Tests", "Thesaurus Tests\Thesaurus Tests.csproj", "{76AF2A49-215B-491E-94C9-167C9C5742D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerySmart UI", "VerySmart UI\VerySmart UI.csproj", "{7F0E9E4F-5704-46CE-BF13-53446E8D1192}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerySmart Core", "VerySmart Core\VerySmart Core.csproj", "{1808B63B-7F2D-41C9-A77D-243E5A89C8F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{76AF2A49-215B-491E-94C9-167C9C5742D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76AF2A49-215B-491E-94C9-167C9C5742D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76AF2A49-215B-491E-94C9-167C9C5742D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F0E9E4F-5704-46CE-BF13-53446E8D1192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F0E9E4F-5704-46CE-BF13-53446E8D1192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F0E9E4F-5704-46CE-BF13-53446E8D1192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F0E9E4F-5704-46CE-BF13-53446E8D1192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1808B63B-7F2D-41C9-A77D-243E5A89C8F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1808B63B-7F2D-41C9-A77D-243E5A89C8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1808B63B-7F2D-41C9-A77D-243E5A89C8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1808B63B-7F2D-41C9-A77D-243E5A89C8F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
