@@ -18,7 +18,10 @@ namespace VerySmart_Core
         public List<string> IgnoreList { get; } = new List<string>
         {
             "the",
-            "i"
+            "i",
+            "am",
+            "and",
+            "or"
         };
     }
 }
