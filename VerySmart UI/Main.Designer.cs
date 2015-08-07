@@ -52,7 +52,7 @@
             this.makeMeVerySmartBtn.Location = new System.Drawing.Point(3, 3);
             this.makeMeVerySmartBtn.Name = "makeMeVerySmartBtn";
             this.makeMeVerySmartBtn.Size = new System.Drawing.Size(130, 23);
-            this.makeMeVerySmartBtn.TabIndex = 1;
+            this.makeMeVerySmartBtn.TabIndex = 2;
             this.makeMeVerySmartBtn.Text = "Make Me Very Smart";
             this.makeMeVerySmartBtn.UseVisualStyleBackColor = true;
             this.makeMeVerySmartBtn.Click += new System.EventHandler(this.makeMeVerySmartBtn_Click);
@@ -64,7 +64,7 @@
             this.inputTextBox.Location = new System.Drawing.Point(0, 0);
             this.inputTextBox.Name = "inputTextBox";
             this.inputTextBox.Size = new System.Drawing.Size(402, 165);
-            this.inputTextBox.TabIndex = 2;
+            this.inputTextBox.TabIndex = 1;
             this.inputTextBox.Text = "i wanted to write an essay";
             this.inputTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputTextBox_KeyPress);
             // 
@@ -138,7 +138,7 @@
             this.outputTextBox.Location = new System.Drawing.Point(0, 0);
             this.outputTextBox.Name = "outputTextBox";
             this.outputTextBox.Size = new System.Drawing.Size(402, 158);
-            this.outputTextBox.TabIndex = 0;
+            this.outputTextBox.TabIndex = 3;
             this.outputTextBox.Text = "";
             // 
             // splitContainer1
