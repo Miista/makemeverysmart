@@ -154,8 +154,8 @@ namespace VerySmart_Core
                                      .Synonyms.ToList();
                     break;
                 default:
-                    synonyms = UsageResolver( term, usages )
-                        .Synonyms.ToList();
+                    var usage = UsageResolver( term, usages );
+                    synonyms = usage?.Synonyms.ToList() ?? new List<string>();
                     break;
             }
 
