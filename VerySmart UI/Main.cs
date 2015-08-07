@@ -11,6 +11,8 @@ namespace VerySmart_UI
     {
         private readonly VerySmartGenerator _generator;
 
+        private readonly IDictionary<string, IUsage> _history = new Dictionary<string, IUsage>();
+
         public Main()
         {
             InitializeComponent();
@@ -21,12 +23,20 @@ namespace VerySmart_UI
 
         private void makeMeVerySmartBtn_Click(object sender, EventArgs e)
         {
+            _history.Clear();
+            repeatLastBtn.Enabled = true;
+            MakeMeVerySmart();
+        }
+
+        private void MakeMeVerySmart()
+        {
             var text = inputTextBox.Text;
             var terms = text.Split( ' ' );
             progressBar.Maximum = terms.Length;
             progressBar.Value = 0;
 
-            var synonymSelection = synonymSelectionBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            var synonymSelection = synonymSelectionBox.Controls.OfType<RadioButton>()
+                                                      .FirstOrDefault( r => r.Checked );
 
             var options = new VerySmartOptions();
             if ( synonymSelection != null )
@@ -45,14 +55,34 @@ namespace VerySmart_UI
 
         private IUsage AskUserForCorrectUsage(string term, List<IUsage> usages)
         {
+            IUsage usage = null;
+            if ( _history.TryGetValue( term, out usage ) )
+            {
+                return usage;
+            }
+
             var dialog = new SelectUsageDialog( term, usages );
             var dialogResult = dialog.ShowDialog( this );
             if ( dialogResult == DialogResult.Cancel )
             {
-                return new DummyUsage();
+                _history[term] = null;
+                return null;
             }
+            _history[term] = dialog.SelectedUsage;
 
             return dialog.SelectedUsage;
+        }
+
+        private void repeatLastBtn_Click(object sender, EventArgs e)
+        {
+            MakeMeVerySmart();
+        }
+
+        private void inputTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // User entered something in the input field. Disable the "Again!!!" button
+            repeatLastBtn.Enabled = false;
+            _history.Clear();
         }
     }
 

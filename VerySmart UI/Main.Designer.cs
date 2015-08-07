@@ -32,9 +32,10 @@
             this.inputTextBox = new System.Windows.Forms.RichTextBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.repeatLastBtn = new System.Windows.Forms.Button();
             this.synonymSelectionBox = new System.Windows.Forms.GroupBox();
-            this.selectLongest = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.selectLongest = new System.Windows.Forms.RadioButton();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel3.SuspendLayout();
@@ -65,6 +66,7 @@
             this.inputTextBox.Size = new System.Drawing.Size(402, 165);
             this.inputTextBox.TabIndex = 2;
             this.inputTextBox.Text = "i wanted to write an essay";
+            this.inputTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputTextBox_KeyPress);
             // 
             // progressBar
             // 
@@ -76,6 +78,7 @@
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.repeatLastBtn);
             this.panel3.Controls.Add(this.progressBar);
             this.panel3.Controls.Add(this.synonymSelectionBox);
             this.panel3.Controls.Add(this.makeMeVerySmartBtn);
@@ -83,6 +86,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(136, 327);
             this.panel3.TabIndex = 8;
+            // 
+            // repeatLastBtn
+            // 
+            this.repeatLastBtn.Enabled = false;
+            this.repeatLastBtn.Location = new System.Drawing.Point(4, 140);
+            this.repeatLastBtn.Name = "repeatLastBtn";
+            this.repeatLastBtn.Size = new System.Drawing.Size(129, 23);
+            this.repeatLastBtn.TabIndex = 6;
+            this.repeatLastBtn.Text = "Again!!!";
+            this.repeatLastBtn.UseVisualStyleBackColor = true;
+            this.repeatLastBtn.Click += new System.EventHandler(this.repeatLastBtn_Click);
             // 
             // synonymSelectionBox
             // 
@@ -96,6 +110,16 @@
             this.synonymSelectionBox.TabStop = false;
             this.synonymSelectionBox.Text = "Synonym Selection";
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(7, 44);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(65, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.Text = "Random";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // selectLongest
             // 
             this.selectLongest.AutoSize = true;
@@ -107,16 +131,6 @@
             this.selectLongest.TabStop = true;
             this.selectLongest.Text = "Longest";
             this.selectLongest.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 44);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(65, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Random";
-            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // outputTextBox
             // 
@@ -178,6 +192,7 @@
         private System.Windows.Forms.RadioButton selectLongest;
         private System.Windows.Forms.RichTextBox outputTextBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button repeatLastBtn;
     }
 }
 
