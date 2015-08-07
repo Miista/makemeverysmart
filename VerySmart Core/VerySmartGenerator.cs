@@ -72,8 +72,7 @@ namespace VerySmart_Core
             var terms = input.Split( ' ' );
             foreach (var term in terms)
             {
-                if ( term == "i"
-                     || term.Length <= 2 ) // ignore words such as "as" -- lol
+                if ( Options.IgnoreList.Contains( term ) )
                 {
                     stringBuilder.Append( $" {term}" );
                     OnWordMadeSmart( term );
