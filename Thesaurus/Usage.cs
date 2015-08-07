@@ -1,21 +1,26 @@
-﻿namespace Thesaurus
+﻿using System.Collections.Generic;
+
+namespace Thesaurus
 {
     public interface IUsage
     {
         string Text { get; }
         WordType Type { get; }
+        IReadOnlyList<string> Synonyms { get; }
     }
 
-    public class Usage : IUsage
+    internal class Usage : IUsage
     {
-        public string Text { get; }
-        public WordType Type { get; }
+        public string Text { get; set; }
+        public WordType Type { get; set; }
+        public IReadOnlyList<string> Synonyms { get; set; }
     }
 
     public enum WordType
     {
         Verb,
         Adjective,
-        Noun
+        Noun,
+        Unknown
     }
 }

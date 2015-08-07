@@ -4,6 +4,6 @@ namespace Thesaurus
 {
     public interface IThesaurus
     {
-        ICollection<IUsage> GetUsages(string word);
+        List<IUsage> GetUsages(string word);
     }
 }
