@@ -56,22 +56,22 @@ namespace VerySmart_UI
 
         private IUsage AskUserForCorrectUsage(string term, List<IUsage> usages)
         {
-            IUsage usage = null;
-            if ( _history.TryGetValue( term, out usage ) )
+            IUsage usageFromHistory;
+            if ( _history.TryGetValue( term, out usageFromHistory ) )
             {
-                return usage;
+                return usageFromHistory;
             }
 
-            var dialog = new SelectUsageDialog( term, usages );
-            var dialogResult = dialog.ShowDialog( this );
+            var usageSelectionDialog = new SelectUsageDialog( term, usages );
+            var dialogResult = usageSelectionDialog.ShowDialog( this );
             if ( dialogResult == DialogResult.Cancel )
             {
                 _history[term] = null;
                 return null;
             }
-            _history[term] = dialog.SelectedUsage;
+            _history[term] = usageSelectionDialog.SelectedUsage;
 
-            return dialog.SelectedUsage;
+            return usageSelectionDialog.SelectedUsage;
         }
 
         private void repeatLastBtn_Click(object sender, EventArgs e)
