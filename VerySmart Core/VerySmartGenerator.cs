@@ -72,7 +72,7 @@ namespace VerySmart_Core
             var terms = input.Split( ' ' );
             foreach (var term in terms)
             {
-                if ( Options.IgnoreList.Contains( term ) )
+                if ( Options.IgnoreList.Contains( term.ToLower() ) )
                 {
                     stringBuilder.Append( $" {term}" );
                     OnWordMadeSmart( term );
