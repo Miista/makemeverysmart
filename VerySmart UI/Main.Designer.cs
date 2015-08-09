@@ -38,6 +38,7 @@
             this.selectLongest = new System.Windows.Forms.RadioButton();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.speakItBtn = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.synonymSelectionBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -78,6 +79,7 @@
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.speakItBtn);
             this.panel3.Controls.Add(this.repeatLastBtn);
             this.panel3.Controls.Add(this.progressBar);
             this.panel3.Controls.Add(this.synonymSelectionBox);
@@ -140,6 +142,7 @@
             this.outputTextBox.Size = new System.Drawing.Size(402, 158);
             this.outputTextBox.TabIndex = 3;
             this.outputTextBox.Text = "";
+            this.outputTextBox.TextChanged += new System.EventHandler(this.outputTextBox_TextChanged);
             // 
             // splitContainer1
             // 
@@ -161,6 +164,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(402, 327);
             this.splitContainer1.SplitterDistance = 165;
             this.splitContainer1.TabIndex = 10;
+            // 
+            // speakItBtn
+            // 
+            this.speakItBtn.Location = new System.Drawing.Point(4, 301);
+            this.speakItBtn.Name = "speakItBtn";
+            this.speakItBtn.Size = new System.Drawing.Size(129, 23);
+            this.speakItBtn.TabIndex = 7;
+            this.speakItBtn.Text = "Read It Aloud!";
+            this.speakItBtn.UseVisualStyleBackColor = true;
+            this.speakItBtn.Click += new System.EventHandler(this.speakItBtn_Click);
             // 
             // Main
             // 
@@ -193,6 +206,7 @@
         private System.Windows.Forms.RichTextBox outputTextBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button repeatLastBtn;
+        private System.Windows.Forms.Button speakItBtn;
     }
 }
 

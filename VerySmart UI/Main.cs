@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Windows.Forms;
 using Thesaurus;
 using VerySmart_Core;
@@ -84,12 +85,16 @@ namespace VerySmart_UI
             repeatLastBtn.Enabled = false;
             _history.Clear();
         }
-    }
 
-    internal class DummyUsage : IUsage
-    {
-        public string Text { get; } = "Dummy";
-        public WordType Type { get; } = WordType.Unknown;
-        public IReadOnlyList<string> Synonyms { get; } = new List<string>();
+        private void speakItBtn_Click(object sender, EventArgs e)
+        {
+            using (var synth = new SpeechSynthesizer())
+            {
+                synth.SelectVoice( "Microsoft Zira Desktop" );
+                synth.Speak( outputTextBox.Text );
+            }
+        }
+
+        private void outputTextBox_TextChanged(object sender, EventArgs e) => speakItBtn.Enabled = !string.IsNullOrEmpty( outputTextBox.Text );
     }
 }
