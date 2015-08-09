@@ -13,13 +13,17 @@ namespace VerySmart_UI
         private readonly VerySmartGenerator _generator;
 
         private readonly IDictionary<string, IUsage> _history = new Dictionary<string, IUsage>();
+        private readonly VerySmartOptions _options;
 
         public Main()
         {
             InitializeComponent();
-            _generator = new VerySmartGenerator();
-            _generator.UsageResolver = AskUserForCorrectUsage;
+            _generator = new VerySmartGenerator
+            {
+                UsageResolver = AskUserForCorrectUsage
+            };
             _generator.WordMadeSmart += word => progressBar.Value += 1;
+            _options = new VerySmartOptions();
         }
 
         private void makeMeVerySmartBtn_Click(object sender, EventArgs e)
@@ -39,14 +43,13 @@ namespace VerySmart_UI
             var synonymSelection = synonymSelectionBox.Controls.OfType<RadioButton>()
                                                       .FirstOrDefault( r => r.Checked );
 
-            var options = new VerySmartOptions();
             if ( synonymSelection != null )
             {
-                options.SynonymSelectionMode = synonymSelection.Text == SynonymSelectionMode.Longest.ToString()
+                _options.SynonymSelectionMode = synonymSelection.Text == SynonymSelectionMode.Longest.ToString()
                     ? SynonymSelectionMode.Longest
                     : SynonymSelectionMode.Random;
             }
-            _generator.Options = options;
+            _generator.Options = _options;
 
             var verysmartText = _generator.MakeMeVerySmart( text );
 
