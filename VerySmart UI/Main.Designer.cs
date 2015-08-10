@@ -33,12 +33,13 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel3 = new System.Windows.Forms.Panel();
             this.synonymSelectionBox = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.selectRandom = new System.Windows.Forms.RadioButton();
             this.selectLongest = new System.Windows.Forms.RadioButton();
             this.speakItBtn = new System.Windows.Forms.Button();
             this.repeatLastBtn = new System.Windows.Forms.Button();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.selectComplex = new System.Windows.Forms.RadioButton();
             this.panel3.SuspendLayout();
             this.synonymSelectionBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -87,24 +88,25 @@
             // synonymSelectionBox
             // 
             this.synonymSelectionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.synonymSelectionBox.Controls.Add(this.radioButton2);
+            this.synonymSelectionBox.Controls.Add(this.selectComplex);
+            this.synonymSelectionBox.Controls.Add(this.selectRandom);
             this.synonymSelectionBox.Controls.Add(this.selectLongest);
             this.synonymSelectionBox.Location = new System.Drawing.Point(3, 3);
             this.synonymSelectionBox.Name = "synonymSelectionBox";
-            this.synonymSelectionBox.Size = new System.Drawing.Size(130, 70);
+            this.synonymSelectionBox.Size = new System.Drawing.Size(130, 93);
             this.synonymSelectionBox.TabIndex = 5;
             this.synonymSelectionBox.TabStop = false;
             this.synonymSelectionBox.Text = "Synonym Selection";
             // 
-            // radioButton2
+            // selectRandom
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 44);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(65, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Random";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.selectRandom.AutoSize = true;
+            this.selectRandom.Location = new System.Drawing.Point(7, 44);
+            this.selectRandom.Name = "selectRandom";
+            this.selectRandom.Size = new System.Drawing.Size(65, 17);
+            this.selectRandom.TabIndex = 1;
+            this.selectRandom.Text = "Random";
+            this.selectRandom.UseVisualStyleBackColor = true;
             // 
             // selectLongest
             // 
@@ -169,6 +171,17 @@
             this.splitContainer1.SplitterDistance = 165;
             this.splitContainer1.TabIndex = 10;
             // 
+            // selectComplex
+            // 
+            this.selectComplex.AutoSize = true;
+            this.selectComplex.Location = new System.Drawing.Point(7, 67);
+            this.selectComplex.Name = "selectComplex";
+            this.selectComplex.Size = new System.Drawing.Size(75, 17);
+            this.selectComplex.TabIndex = 6;
+            this.selectComplex.TabStop = true;
+            this.selectComplex.Text = "Complexity";
+            this.selectComplex.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,12 +212,13 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox synonymSelectionBox;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton selectRandom;
         private System.Windows.Forms.RadioButton selectLongest;
         private System.Windows.Forms.RichTextBox outputTextBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button repeatLastBtn;
         private System.Windows.Forms.Button speakItBtn;
+        private System.Windows.Forms.RadioButton selectComplex;
     }
 }
 
