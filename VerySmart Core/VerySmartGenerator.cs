@@ -127,10 +127,10 @@ namespace VerySmart_Core
             switch (Options.SynonymSelectionMode)
             {
                 case SynonymSelectionMode.Longest:
-                    verysmartWord = Selections.LongestWord( synonyms.Select( s => s.Text ).ToList() );
+                    verysmartWord = Selections.LongestWord( synonyms );
                     break;
                 case SynonymSelectionMode.Random:
-                    verysmartWord = Selections.RandomWord( synonyms.Select( s => s.Text ).ToList() );
+                    verysmartWord = Selections.RandomWord( synonyms );
                     break;
             }
             return verysmartWord;
