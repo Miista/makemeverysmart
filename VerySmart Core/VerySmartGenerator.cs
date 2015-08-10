@@ -132,6 +132,9 @@ namespace VerySmart_Core
                 case SynonymSelectionMode.Random:
                     verysmartWord = Selections.RandomWord( synonyms );
                     break;
+                case SynonymSelectionMode.Complexity:
+                    verysmartWord = Selections.MostComplex( synonyms );
+                    break;
             }
             return verysmartWord;
         }

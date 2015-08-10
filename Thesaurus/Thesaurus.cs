@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -53,11 +54,34 @@ namespace Thesaurus
             {
                 var synonyms =
                     node.SelectNodes(
-                        $"//div[@id='synonyms-{tabPosition}']//div[@class='relevancy-list']//span[@class='text']/text()" );
-                return synonyms.Select( n => new Word { Text = n.InnerText } )
+                        $"//div[@id='synonyms-{tabPosition}']//div[@class='relevancy-list']//li//a" );
+                return synonyms.Select( CreateWordFromNode )
                                .ToList();
             }
             return new List<IWord>();
+        }
+
+        private static IWord CreateWordFromNode(HtmlNode node)
+        {
+            var complexity = GetWordComplexity( node );
+            var text = node.SelectSingleNode(".//span//text()").InnerText;
+            return new Word
+            {
+                Text = text,
+                Complexity = complexity
+            };
+        }
+
+        private static int GetWordComplexity(HtmlNode node)
+        {
+            var possibleComplexity = node.Attributes.AttributesWithName( "data-complexity" )
+                                         .First();
+            if ( possibleComplexity == null )
+            {
+                return 0; // Default complexity
+            }
+            int complexity;
+            return int.TryParse( possibleComplexity.Value, out complexity ) ? complexity : 0;
         }
 
         private static WordType GetWordType(HtmlNode typeNode)

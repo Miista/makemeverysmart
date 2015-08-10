@@ -51,5 +51,23 @@ namespace Thesaurus_Tests
             Assert.AreEqual( 17, usages[2].Synonyms.Count );
             Assert.AreEqual( 10, usages[3].Synonyms.Count );
         }
+
+        [Test]
+        public void GetUsages_ValidWord_CorrectComplexity()
+        {
+            var thesaurus = new Thesaurus.Thesaurus();
+            var usages = thesaurus.GetUsages("smart");
+
+            Assert.AreEqual( 40, usages[0].Synonyms.Count );
+            Assert.AreEqual( 18,
+                usages[0].Synonyms.Count( w => w.Complexity == 1 ),
+                "Incorrect number of synonyms with complexity 1" );
+            Assert.AreEqual( 17,
+                usages[0].Synonyms.Count( w => w.Complexity == 2 ),
+                "Incorrect number of synonyms with complexity 2" );
+            Assert.AreEqual( 5,
+                usages[0].Synonyms.Count( w => w.Complexity == 3 ),
+                "Incorrect number of synonyms with complexity 3" );
+        }
     }
 }

@@ -5,7 +5,8 @@ namespace VerySmart_Core
     public enum SynonymSelectionMode
     {
         Longest,
-        Random
+        Random,
+        Complexity
     }
 
     public class VerySmartOptions
