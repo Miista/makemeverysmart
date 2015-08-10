@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Thesaurus;
+using VerySmart_Core;
 
 namespace MakeMeVerySmart
 {
     internal class Program
     {
-        private static readonly IReadOnlyList<string> _ignores = new List<string>
-        {
-            "i",
-            "am"
-        };
-
         private static void Main(string[] args)
         {
             while (true)
@@ -68,38 +63,21 @@ namespace MakeMeVerySmart
 
         private static string MakeMeVerySmart(string sentence)
         {
-            var words = sentence.Split( ' ' );
-            var api = new global::Thesaurus.Thesaurus();
-            var chosenWords = new List<string>();
-            foreach (var word in words)
+            var generator = new VerySmartGenerator
             {
-                if ( _ignores.Contains( word ) )
-                {
-                    chosenWords.Add( word );
-                    continue;
-                }
-                var result = api.GetUsages( word );
-                if ( result.Count > 1 )
-                {
-                    var synonyms = GetSynonymList( word, result );
-                    var synonym = ChooseTheWord( synonyms.ToList() );
-                    chosenWords.Add( synonym );
-                }
-                else if ( result.Count == 1 )
-                {
-                    var synonyms = result.First().Synonyms;
-                    var synonym = ChooseTheWord( synonyms.ToList() );
-                    chosenWords.Add( synonym );
-                }
-                else
-                {
-                    chosenWords.Add( word );
-                }
-            }
-            return string.Join( " ", chosenWords );
+                UsageResolver = GetSynonymList
+            };
+            var options = new VerySmartOptions
+            {
+                SynonymSelectionMode = Config.Options[Config.OptionSelectRandom]
+                    ? SynonymSelectionMode.Random
+                    : SynonymSelectionMode.Longest
+            };
+            generator.Options = options;
+            return generator.MakeMeVerySmart( sentence );
         }
 
-        private static IReadOnlyList<IWord> GetSynonymList(string word, List<IUsage> usages)
+        private static IUsage GetSynonymList(string word, List<IUsage> usages)
         {
             if ( Config.Options[Config.OptionWarnOnMultipleUsages] )
             {
@@ -112,33 +90,10 @@ namespace MakeMeVerySmart
                 if ( input != null )
                 {
                     var selection = int.Parse( input );
-                    return usages[selection].Synonyms;
+                    return usages[selection];
                 }
             }
-            return usages.First().Synonyms;
-        }
-
-        private static string ChooseTheWord(List<IWord> synonyms)
-        {
-            if ( Config.Options[Config.OptionExcludeWordsWithSpaces] )
-            {
-                synonyms.RemoveAll( s => s.Text.Contains( " " ) );
-            }
-            if ( synonyms.Count == 0 )
-            {
-                return null;
-            }
-            if ( Config.Options[Config.OptionSelectRandom] )
-            {
-                return Selections.RandomWord( synonyms.Select( s => s.Text )
-                                                      .ToList() );
-            }
-            if ( Config.Options[Config.OptionSelectLongestWord] )
-            {
-                return Selections.LongestWord( synonyms.Select( s => s.Text )
-                                                       .ToList() );
-            }
-            return synonyms.First().Text;
+            return usages.First();
         }
     }
 
@@ -156,19 +111,6 @@ namespace MakeMeVerySmart
             { OptionSelectRandom, false },
             { OptionExcludeWordsWithSpaces, false }
         };
-    }
-
-    public class Selections
-    {
-        public static string LongestWord(IReadOnlyList<string> list) => list.Aggregate( (s1, s2) => s1.Length < s2.Length
-            ? s2
-            : s1 );
-
-        public static string RandomWord(IReadOnlyList<string> synonyms)
-        {
-            var random = new Random();
-            return synonyms[random.Next( 0, synonyms.Count - 1 )];
-        }
     }
 
     public class ThesaurusEntry

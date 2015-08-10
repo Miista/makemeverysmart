@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Thesaurus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -58,6 +57,10 @@
     <ProjectReference Include="..\Thesaurus\Thesaurus.csproj">
       <Project>{dc31b6f2-2481-46c9-a800-b31d00065d07}</Project>
       <Name>Thesaurus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VerySmart Core\VerySmart Core.csproj">
+      <Project>{1808b63b-7f2d-41c9-a77d-243e5a89c8f0}</Project>
+      <Name>VerySmart Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
