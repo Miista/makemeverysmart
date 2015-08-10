@@ -105,7 +105,7 @@ namespace VerySmart_Core
             var usages = _thesaurus.GetUsages( searchTerm );
 
             var verysmartWord = term;
-            List<string> synonyms;
+            List<IWord> synonyms;
             if ( TryGetSynonyms( term, usages, out synonyms ) )
             {
                 verysmartWord = SelectVerySmartWordFromSynonyms( synonyms, verysmartWord );
@@ -120,17 +120,17 @@ namespace VerySmart_Core
             return verysmartWord;
         }
 
-        private string SelectVerySmartWordFromSynonyms(List<string> synonyms, string verysmartWord)
+        private string SelectVerySmartWordFromSynonyms(List<IWord> synonyms, string verysmartWord)
         {
             // Remove words that contain spaces
-            synonyms.RemoveAll( s => s.Contains( ' ' ) );
+            synonyms.RemoveAll( s => s.Text.Contains( ' ' ) );
             switch (Options.SynonymSelectionMode)
             {
                 case SynonymSelectionMode.Longest:
-                    verysmartWord = Selections.LongestWord( synonyms );
+                    verysmartWord = Selections.LongestWord( synonyms.Select( s => s.Text ).ToList() );
                     break;
                 case SynonymSelectionMode.Random:
-                    verysmartWord = Selections.RandomWord( synonyms );
+                    verysmartWord = Selections.RandomWord( synonyms.Select( s => s.Text ).ToList() );
                     break;
             }
             return verysmartWord;
@@ -144,12 +144,12 @@ namespace VerySmart_Core
         /// <param name="usages"></param>
         /// <param name="synonyms"></param>
         /// <returns>True if the selected usage has any synonyms.</returns>
-        private bool TryGetSynonyms(string term, List<IUsage> usages, out List<string> synonyms)
+        private bool TryGetSynonyms(string term, List<IUsage> usages, out List<IWord> synonyms)
         {
             switch (usages.Count)
             {
                 case 0:
-                    synonyms = new List<string>();
+                    synonyms = new List<IWord>();
                     break;
                 case 1:
                     synonyms = usages.First()
@@ -157,7 +157,7 @@ namespace VerySmart_Core
                     break;
                 default:
                     var usage = UsageResolver( term, usages );
-                    synonyms = usage?.Synonyms.ToList() ?? new List<string>();
+                    synonyms = usage?.Synonyms.ToList() ?? new List<IWord>();
                     break;
             }
 

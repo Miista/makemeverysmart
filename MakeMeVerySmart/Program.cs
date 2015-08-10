@@ -99,7 +99,7 @@ namespace MakeMeVerySmart
             return string.Join( " ", chosenWords );
         }
 
-        private static IReadOnlyList<string> GetSynonymList(string word, List<IUsage> usages)
+        private static IReadOnlyList<IWord> GetSynonymList(string word, List<IUsage> usages)
         {
             if ( Config.Options[Config.OptionWarnOnMultipleUsages] )
             {
@@ -118,11 +118,11 @@ namespace MakeMeVerySmart
             return usages.First().Synonyms;
         }
 
-        private static string ChooseTheWord(List<string> synonyms)
+        private static string ChooseTheWord(List<IWord> synonyms)
         {
             if ( Config.Options[Config.OptionExcludeWordsWithSpaces] )
             {
-                synonyms.RemoveAll( s => s.Contains( " " ) );
+                synonyms.RemoveAll( s => s.Text.Contains( " " ) );
             }
             if ( synonyms.Count == 0 )
             {
@@ -130,13 +130,15 @@ namespace MakeMeVerySmart
             }
             if ( Config.Options[Config.OptionSelectRandom] )
             {
-                return Selections.RandomWord( synonyms );
+                return Selections.RandomWord( synonyms.Select( s => s.Text )
+                                                      .ToList() );
             }
             if ( Config.Options[Config.OptionSelectLongestWord] )
             {
-                return Selections.LongestWord( synonyms );
+                return Selections.LongestWord( synonyms.Select( s => s.Text )
+                                                       .ToList() );
             }
-            return synonyms.First();
+            return synonyms.First().Text;
         }
     }
 

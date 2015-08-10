@@ -44,7 +44,7 @@ namespace Thesaurus
             };
         }
 
-        private static IReadOnlyList<string> ExtractSynonyms(HtmlNode node)
+        private static IReadOnlyList<IWord> ExtractSynonyms(HtmlNode node)
         {
             var c = node.Id.Last()
                         .ToString();
@@ -54,10 +54,10 @@ namespace Thesaurus
                 var synonyms =
                     node.SelectNodes(
                         $"//div[@id='synonyms-{tabPosition}']//div[@class='relevancy-list']//span[@class='text']/text()" );
-                return synonyms.Select( n => n.InnerText )
+                return synonyms.Select( n => new Word { Text = n.InnerText } )
                                .ToList();
             }
-            return new List<string>();
+            return new List<IWord>();
         }
 
         private static WordType GetWordType(HtmlNode typeNode)

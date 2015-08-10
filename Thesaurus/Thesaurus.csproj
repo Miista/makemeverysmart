@@ -52,6 +52,7 @@
     <Compile Include="Usage.cs" />
     <Compile Include="IThesaurus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Word.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
