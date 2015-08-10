@@ -53,9 +53,17 @@ namespace VerySmart_UI
             Dispose();
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void dontUseASynonymBtn_Click(object sender, System.EventArgs e)
         {
             Dispose();
+        }
+
+        private void SelectUsageDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ( e.KeyCode == Keys.Escape )
+            {
+                dontUseASynonymBtn_Click( sender, e );
+            }
         }
     }
 }
