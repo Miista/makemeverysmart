@@ -41,9 +41,9 @@
             this.repeatLastBtn = new System.Windows.Forms.Button();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.complexityLabelAll = new System.Windows.Forms.Label();
+            this.complexityLabelHigh = new System.Windows.Forms.Label();
+            this.complexityLabelLow = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.complexityTrackBar)).BeginInit();
@@ -94,9 +94,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.complexityLabelLow);
+            this.groupBox1.Controls.Add(this.complexityLabelHigh);
+            this.groupBox1.Controls.Add(this.complexityLabelAll);
             this.groupBox1.Controls.Add(this.complexityTrackBar);
             this.groupBox1.Location = new System.Drawing.Point(4, 79);
             this.groupBox1.Name = "groupBox1";
@@ -128,22 +128,22 @@
             // selectRandom
             // 
             this.selectRandom.AutoSize = true;
+            this.selectRandom.Checked = true;
             this.selectRandom.Location = new System.Drawing.Point(7, 44);
             this.selectRandom.Name = "selectRandom";
             this.selectRandom.Size = new System.Drawing.Size(65, 17);
             this.selectRandom.TabIndex = 1;
+            this.selectRandom.TabStop = true;
             this.selectRandom.Text = "Random";
             this.selectRandom.UseVisualStyleBackColor = true;
             // 
             // selectLongest
             // 
             this.selectLongest.AutoSize = true;
-            this.selectLongest.Checked = true;
             this.selectLongest.Location = new System.Drawing.Point(7, 20);
             this.selectLongest.Name = "selectLongest";
             this.selectLongest.Size = new System.Drawing.Size(63, 17);
             this.selectLongest.TabIndex = 0;
-            this.selectLongest.TabStop = true;
             this.selectLongest.Text = "Longest";
             this.selectLongest.UseVisualStyleBackColor = true;
             // 
@@ -198,32 +198,32 @@
             this.splitContainer1.SplitterDistance = 165;
             this.splitContainer1.TabIndex = 10;
             // 
-            // label1
+            // complexityLabelAll
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "All";
+            this.complexityLabelAll.AutoSize = true;
+            this.complexityLabelAll.Location = new System.Drawing.Point(6, 51);
+            this.complexityLabelAll.Name = "complexityLabelAll";
+            this.complexityLabelAll.Size = new System.Drawing.Size(18, 13);
+            this.complexityLabelAll.TabIndex = 2;
+            this.complexityLabelAll.Text = "All";
             // 
-            // label2
+            // complexityLabelHigh
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(94, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "High";
+            this.complexityLabelHigh.AutoSize = true;
+            this.complexityLabelHigh.Location = new System.Drawing.Point(94, 51);
+            this.complexityLabelHigh.Name = "complexityLabelHigh";
+            this.complexityLabelHigh.Size = new System.Drawing.Size(29, 13);
+            this.complexityLabelHigh.TabIndex = 3;
+            this.complexityLabelHigh.Text = "High";
             // 
-            // label3
+            // complexityLabelLow
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Low";
+            this.complexityLabelLow.AutoSize = true;
+            this.complexityLabelLow.Location = new System.Drawing.Point(30, 51);
+            this.complexityLabelLow.Name = "complexityLabelLow";
+            this.complexityLabelLow.Size = new System.Drawing.Size(27, 13);
+            this.complexityLabelLow.TabIndex = 4;
+            this.complexityLabelLow.Text = "Low";
             // 
             // Main
             // 
@@ -266,9 +266,9 @@
         private System.Windows.Forms.Button speakItBtn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TrackBar complexityTrackBar;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label complexityLabelLow;
+        private System.Windows.Forms.Label complexityLabelHigh;
+        private System.Windows.Forms.Label complexityLabelAll;
     }
 }
 

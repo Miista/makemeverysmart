@@ -33,6 +33,7 @@
             this.textHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.typeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dontUseASynonymBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // infoLabel
@@ -54,9 +55,9 @@
             this.typeHeader});
             this.usagesListView.FullRowSelect = true;
             this.usagesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.usagesListView.Location = new System.Drawing.Point(12, 25);
+            this.usagesListView.Location = new System.Drawing.Point(12, 38);
             this.usagesListView.Name = "usagesListView";
-            this.usagesListView.Size = new System.Drawing.Size(218, 162);
+            this.usagesListView.Size = new System.Drawing.Size(315, 186);
             this.usagesListView.TabIndex = 2;
             this.usagesListView.UseCompatibleStateImageBehavior = false;
             this.usagesListView.View = System.Windows.Forms.View.Details;
@@ -74,7 +75,7 @@
             // dontUseASynonymBtn
             // 
             this.dontUseASynonymBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dontUseASynonymBtn.Location = new System.Drawing.Point(12, 193);
+            this.dontUseASynonymBtn.Location = new System.Drawing.Point(12, 230);
             this.dontUseASynonymBtn.Name = "dontUseASynonymBtn";
             this.dontUseASynonymBtn.Size = new System.Drawing.Size(123, 23);
             this.dontUseASynonymBtn.TabIndex = 3;
@@ -82,11 +83,21 @@
             this.dontUseASynonymBtn.UseVisualStyleBackColor = true;
             this.dontUseASynonymBtn.Click += new System.EventHandler(this.dontUseASynonymBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(317, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Press [Escape] if you don\'t want to select a synonym for this word.";
+            // 
             // SelectUsageDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(242, 228);
+            this.ClientSize = new System.Drawing.Size(339, 265);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dontUseASynonymBtn);
             this.Controls.Add(this.usagesListView);
             this.Controls.Add(this.infoLabel);
@@ -106,5 +117,6 @@
         private System.Windows.Forms.ColumnHeader textHeader;
         private System.Windows.Forms.ColumnHeader typeHeader;
         private System.Windows.Forms.Button dontUseASynonymBtn;
+        private System.Windows.Forms.Label label1;
     }
 }
