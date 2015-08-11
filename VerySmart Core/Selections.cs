@@ -18,11 +18,5 @@ namespace VerySmart_Core
             var random = new Random();
             return synonyms[random.Next( 0, synonyms.Count - 1 )].Text;
         }
-
-        public static string MostComplex(List<IWord> synonyms)
-        {
-            var maxComplexity = synonyms.Max(w => w.Complexity);
-            return RandomWord( synonyms.Where( w => w.Complexity == maxComplexity ).ToList() );
-        }
     }
 }

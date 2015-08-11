@@ -47,9 +47,7 @@ namespace VerySmart_UI
             {
                 _options.SynonymSelectionMode = synonymSelection.Text == SynonymSelectionMode.Longest.ToString()
                     ? SynonymSelectionMode.Longest
-                    : synonymSelection.Text == SynonymSelectionMode.Complexity.ToString()
-                        ? SynonymSelectionMode.Complexity
-                        : SynonymSelectionMode.Random;
+                    : SynonymSelectionMode.Random;
             }
             _generator.Options = _options;
 

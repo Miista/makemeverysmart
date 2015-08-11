@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Thesaurus;
 using VerySmart_Core;
+using WordComplexity = VerySmart_Core.WordComplexity;
 
 namespace MakeMeVerySmart
 {
@@ -71,7 +72,8 @@ namespace MakeMeVerySmart
             {
                 SynonymSelectionMode = Config.Options[Config.OptionSelectRandom]
                     ? SynonymSelectionMode.Random
-                    : SynonymSelectionMode.Longest
+                    : SynonymSelectionMode.Longest,
+                Complexity = WordComplexity.All
             };
             generator.Options = options;
             return generator.MakeMeVerySmart( sentence );

@@ -108,7 +108,7 @@ namespace VerySmart_Core
             List<IWord> synonyms;
             if ( TryGetSynonyms( term, usages, out synonyms ) )
             {
-                verysmartWord = SelectVerySmartWordFromSynonyms( synonyms, verysmartWord );
+                verysmartWord = SelectVerySmartWordFromSynonyms( synonyms );
             }
             else
             {
@@ -120,23 +120,36 @@ namespace VerySmart_Core
             return verysmartWord;
         }
 
-        private string SelectVerySmartWordFromSynonyms(List<IWord> synonyms, string verysmartWord)
+        private string SelectVerySmartWordFromSynonyms(List<IWord> synonyms)
         {
             // Remove words that contain spaces
             synonyms.RemoveAll( s => s.Text.Contains( ' ' ) );
+            var selectionAlgorithm = GetSelectionAlgorithm();
+            return selectionAlgorithm( FilterSynonymList( synonyms ) );
+        }
+
+        private List<IWord> FilterSynonymList(List<IWord> synonyms)
+        {
+            if ( _options.Complexity != WordComplexity.All
+                 && synonyms.Any( s => (int)s.Complexity == (int)_options.Complexity ) )
+            {
+                return synonyms.Where( s => (int)s.Complexity == (int)_options.Complexity )
+                               .ToList();
+            }
+            return synonyms;
+        }
+
+        private Func<List<IWord>, string> GetSelectionAlgorithm()
+        {
             switch (Options.SynonymSelectionMode)
             {
                 case SynonymSelectionMode.Longest:
-                    verysmartWord = Selections.LongestWord( synonyms );
-                    break;
+                    return Selections.LongestWord;
                 case SynonymSelectionMode.Random:
-                    verysmartWord = Selections.RandomWord( synonyms );
-                    break;
-                case SynonymSelectionMode.Complexity:
-                    verysmartWord = Selections.MostComplex( synonyms );
-                    break;
+                    return Selections.RandomWord;
+                default:
+                    goto case SynonymSelectionMode.Longest;
             }
-            return verysmartWord;
         }
 
         /// <summary>
