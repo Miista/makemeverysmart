@@ -5,6 +5,7 @@ using System.Speech.Synthesis;
 using System.Windows.Forms;
 using Thesaurus;
 using VerySmart_Core;
+using WordComplexity = VerySmart_Core.WordComplexity;
 
 namespace VerySmart_UI
 {
@@ -48,6 +49,7 @@ namespace VerySmart_UI
                 _options.SynonymSelectionMode = synonymSelection.Text == SynonymSelectionMode.Longest.ToString()
                     ? SynonymSelectionMode.Longest
                     : SynonymSelectionMode.Random;
+                _options.Complexity = GetComplexity();
             }
             _generator.Options = _options;
 
@@ -55,6 +57,23 @@ namespace VerySmart_UI
 
             outputTextBox.Text = verysmartText;
             progressBar.Value = 0;
+        }
+
+        private WordComplexity GetComplexity()
+        {
+            switch (complexityTrackBar.Value)
+            {
+                default:
+                // ReSharper disable once RedundantCaseLabel
+                case 0:
+                    return WordComplexity.All;
+                case 1:
+                    return WordComplexity.LowComplexity;
+                case 2:
+                    return WordComplexity.MediumComplexity;
+                case 3:
+                    return WordComplexity.HighComplexity;
+            }
         }
 
         private IUsage AskUserForCorrectUsage(string term, List<IUsage> usages)

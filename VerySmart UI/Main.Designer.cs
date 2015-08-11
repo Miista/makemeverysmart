@@ -32,6 +32,8 @@
             this.inputTextBox = new System.Windows.Forms.RichTextBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.complexityTrackBar = new System.Windows.Forms.TrackBar();
             this.synonymSelectionBox = new System.Windows.Forms.GroupBox();
             this.selectRandom = new System.Windows.Forms.RadioButton();
             this.selectLongest = new System.Windows.Forms.RadioButton();
@@ -39,8 +41,12 @@
             this.repeatLastBtn = new System.Windows.Forms.Button();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.selectComplex = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.complexityTrackBar)).BeginInit();
             this.synonymSelectionBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -67,7 +73,7 @@
             this.inputTextBox.Name = "inputTextBox";
             this.inputTextBox.Size = new System.Drawing.Size(409, 165);
             this.inputTextBox.TabIndex = 1;
-            this.inputTextBox.Text = "i wanted to write an essay";
+            this.inputTextBox.Text = "i want to write an essay";
             this.inputTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputTextBox_KeyPress);
             // 
             // progressBar
@@ -79,21 +85,42 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.synonymSelectionBox);
             this.panel3.Location = new System.Drawing.Point(427, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(136, 269);
             this.panel3.TabIndex = 8;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.complexityTrackBar);
+            this.groupBox1.Location = new System.Drawing.Point(4, 79);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(129, 71);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Complexity";
+            // 
+            // complexityTrackBar
+            // 
+            this.complexityTrackBar.Location = new System.Drawing.Point(0, 19);
+            this.complexityTrackBar.Maximum = 3;
+            this.complexityTrackBar.Name = "complexityTrackBar";
+            this.complexityTrackBar.Size = new System.Drawing.Size(123, 45);
+            this.complexityTrackBar.TabIndex = 1;
+            // 
             // synonymSelectionBox
             // 
             this.synonymSelectionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.synonymSelectionBox.Controls.Add(this.selectComplex);
             this.synonymSelectionBox.Controls.Add(this.selectRandom);
             this.synonymSelectionBox.Controls.Add(this.selectLongest);
             this.synonymSelectionBox.Location = new System.Drawing.Point(3, 3);
             this.synonymSelectionBox.Name = "synonymSelectionBox";
-            this.synonymSelectionBox.Size = new System.Drawing.Size(130, 93);
+            this.synonymSelectionBox.Size = new System.Drawing.Size(130, 69);
             this.synonymSelectionBox.TabIndex = 5;
             this.synonymSelectionBox.TabStop = false;
             this.synonymSelectionBox.Text = "Synonym Selection";
@@ -171,16 +198,32 @@
             this.splitContainer1.SplitterDistance = 165;
             this.splitContainer1.TabIndex = 10;
             // 
-            // selectComplex
+            // label1
             // 
-            this.selectComplex.AutoSize = true;
-            this.selectComplex.Location = new System.Drawing.Point(7, 67);
-            this.selectComplex.Name = "selectComplex";
-            this.selectComplex.Size = new System.Drawing.Size(75, 17);
-            this.selectComplex.TabIndex = 6;
-            this.selectComplex.TabStop = true;
-            this.selectComplex.Text = "Complexity";
-            this.selectComplex.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "All";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(94, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "High";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(30, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Low";
             // 
             // Main
             // 
@@ -196,6 +239,9 @@
             this.Name = "Main";
             this.Text = "Form1";
             this.panel3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.complexityTrackBar)).EndInit();
             this.synonymSelectionBox.ResumeLayout(false);
             this.synonymSelectionBox.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -218,7 +264,11 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button repeatLastBtn;
         private System.Windows.Forms.Button speakItBtn;
-        private System.Windows.Forms.RadioButton selectComplex;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TrackBar complexityTrackBar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
