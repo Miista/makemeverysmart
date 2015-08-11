@@ -64,11 +64,24 @@ namespace Thesaurus
         private static IWord CreateWordFromNode(HtmlNode node)
         {
             var complexity = GetWordComplexity( node );
+            WordComplexity wordComplexity;
+            switch (complexity)
+            {
+                case 2:
+                    wordComplexity = WordComplexity.MediumComplexity;
+                    break;
+                case 3:
+                    wordComplexity = WordComplexity.HighComplexity;
+                    break;
+                default: // also case 1
+                    wordComplexity = WordComplexity.LowComplexity;
+                    break;
+            }
             var text = node.SelectSingleNode(".//span//text()").InnerText;
             return new Word
             {
                 Text = text,
-                Complexity = complexity
+                Complexity = wordComplexity
             };
         }
 

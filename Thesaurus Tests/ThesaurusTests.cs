@@ -60,14 +60,14 @@ namespace Thesaurus_Tests
 
             Assert.AreEqual( 40, usages[0].Synonyms.Count );
             Assert.AreEqual( 18,
-                usages[0].Synonyms.Count( w => w.Complexity == 1 ),
-                "Incorrect number of synonyms with complexity 1" );
+                usages[0].Synonyms.Count( w => w.Complexity == WordComplexity.LowComplexity ),
+                "Incorrect number of synonyms with low complexity" );
             Assert.AreEqual( 17,
-                usages[0].Synonyms.Count( w => w.Complexity == 2 ),
-                "Incorrect number of synonyms with complexity 2" );
+                usages[0].Synonyms.Count( w => w.Complexity == WordComplexity.MediumComplexity ),
+                "Incorrect number of synonyms with medium complexity" );
             Assert.AreEqual( 5,
-                usages[0].Synonyms.Count( w => w.Complexity == 3 ),
-                "Incorrect number of synonyms with complexity 3" );
+                usages[0].Synonyms.Count( w => w.Complexity == WordComplexity.HighComplexity ),
+                "Incorrect number of synonyms with high complexity" );
         }
     }
 }
