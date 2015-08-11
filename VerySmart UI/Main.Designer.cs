@@ -61,7 +61,7 @@
             this.makeMeVerySmartBtn.Name = "makeMeVerySmartBtn";
             this.makeMeVerySmartBtn.Size = new System.Drawing.Size(136, 23);
             this.makeMeVerySmartBtn.TabIndex = 2;
-            this.makeMeVerySmartBtn.Text = "Make Me Very Smart";
+            this.makeMeVerySmartBtn.Text = "&Make Me Very Smart";
             this.makeMeVerySmartBtn.UseVisualStyleBackColor = true;
             this.makeMeVerySmartBtn.Click += new System.EventHandler(this.makeMeVerySmartBtn_Click);
             // 
@@ -154,7 +154,7 @@
             this.speakItBtn.Name = "speakItBtn";
             this.speakItBtn.Size = new System.Drawing.Size(136, 22);
             this.speakItBtn.TabIndex = 7;
-            this.speakItBtn.Text = "Read It Aloud!";
+            this.speakItBtn.Text = "&Read It Aloud!";
             this.speakItBtn.UseVisualStyleBackColor = true;
             this.speakItBtn.Click += new System.EventHandler(this.speakItBtn_Click);
             // 
@@ -166,7 +166,7 @@
             this.repeatLastBtn.Name = "repeatLastBtn";
             this.repeatLastBtn.Size = new System.Drawing.Size(136, 24);
             this.repeatLastBtn.TabIndex = 6;
-            this.repeatLastBtn.Text = "Again!!!";
+            this.repeatLastBtn.Text = "&Again!!!";
             this.repeatLastBtn.UseVisualStyleBackColor = true;
             this.repeatLastBtn.Click += new System.EventHandler(this.repeatLastBtn_Click);
             // 
