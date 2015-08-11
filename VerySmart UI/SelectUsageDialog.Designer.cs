@@ -103,6 +103,7 @@
             this.Controls.Add(this.infoLabel);
             this.KeyPreview = true;
             this.Name = "SelectUsageDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SelectUsageDialog";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectUsageDialog_KeyDown);
             this.ResumeLayout(false);
