@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Speech.Synthesis;
 using System.Windows.Forms;
@@ -16,6 +15,7 @@ namespace VerySmart_UI
 
         private readonly IDictionary<string, IUsage> _history = new Dictionary<string, IUsage>();
         private readonly VerySmartOptions _options;
+        private readonly SpeechSynthesizer _synth = new SpeechSynthesizer();
 
         public Main()
         {
@@ -26,6 +26,7 @@ namespace VerySmart_UI
             };
             _generator.WordMadeSmart += word => progressBar.Value += 1;
             _options = new VerySmartOptions();
+            _synth.SelectVoice("Microsoft Zira Desktop");
         }
 
         private void makeMeVerySmartBtn_Click(object sender, EventArgs e)
@@ -111,11 +112,7 @@ namespace VerySmart_UI
 
         private void speakItBtn_Click(object sender, EventArgs e)
         {
-            using (var synth = new SpeechSynthesizer())
-            {
-                synth.SelectVoice( "Microsoft Zira Desktop" );
-                synth.Speak( outputTextBox.Text );
-            }
+            _synth.SpeakAsync( outputTextBox.Text );
         }
 
         private void outputTextBox_TextChanged(object sender, EventArgs e) => speakItBtn.Enabled = !string.IsNullOrEmpty( outputTextBox.Text );
