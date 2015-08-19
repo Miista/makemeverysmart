@@ -13,3 +13,6 @@ straightforward the broadcast itself.
 This production is proposed to meet you terribly apt.  Only supplement your fundamentals and 
 clap the toggle. Below you will detect this astonishingly declaration having been obliged 
 straightforward through the show itself.
+
+## Inspiration
+The inspiration for this program comes from [r/iamverysmart](https://www.reddit.com/r/iamverysmart).
