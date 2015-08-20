@@ -105,20 +105,18 @@ namespace VerySmart_Core
             }
             var usages = GetUsages( searchTerm );
 
-            var verysmartWord = term;
             List<IWord> synonyms;
             if ( TryGetSynonyms( term, usages, out synonyms ) )
             {
-                verysmartWord = SelectVerySmartWordFromSynonyms( synonyms );
-            }
-            else
-            {
-                return term;
+                var verysmartWord = SelectVerySmartWordFromSynonyms( synonyms );
+                // Re-apply the dot we removed.
+                verysmartWord = hasDot ? verysmartWord + "." : verysmartWord;
+                return verysmartWord;
             }
 
-            // Re-apply the dot we removed.
-            verysmartWord = hasDot ? verysmartWord + "." : verysmartWord;
-            return verysmartWord;
+            // No suitable synonyms were found so just return whatever the user
+            // inputted.
+            return term;
         }
 
         private List<IUsage> GetUsages(string searchTerm)
