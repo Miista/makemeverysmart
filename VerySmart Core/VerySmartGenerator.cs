@@ -38,6 +38,7 @@ namespace VerySmart_Core
 
         private readonly Thesaurus.Thesaurus _thesaurus = new Thesaurus.Thesaurus();
         private VerySmartOptions _options;
+        private readonly IDictionary<string, List<IUsage>> _cache = new Dictionary<string, List<IUsage>>();
 
         public VerySmartGenerator()
         {
@@ -102,7 +103,7 @@ namespace VerySmart_Core
             {
                 searchTerm = term.Substring( 0, term.Length - 1 );
             }
-            var usages = _thesaurus.GetUsages( searchTerm );
+            var usages = GetUsages( searchTerm );
 
             var verysmartWord = term;
             List<IWord> synonyms;
@@ -118,6 +119,17 @@ namespace VerySmart_Core
             // Re-apply the dot we removed.
             verysmartWord = hasDot ? verysmartWord + "." : verysmartWord;
             return verysmartWord;
+        }
+
+        private List<IUsage> GetUsages(string searchTerm)
+        {
+            if ( _cache.ContainsKey( searchTerm ) )
+            {
+                return _cache[searchTerm];
+            }
+            var usages = _thesaurus.GetUsages( searchTerm );
+            _cache[searchTerm] = usages;
+            return usages;
         }
 
         private string SelectVerySmartWordFromSynonyms(List<IWord> synonyms)
